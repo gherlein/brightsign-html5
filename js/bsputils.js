@@ -1,19 +1,47 @@
 // BrightSign Player JS Support utilities for JavaScriot - 20130403-1139
 
-var enable_debug_logging=true;
+var bsp_utils_enable_debug_logging=false;
 
-var screenHeight=$(window).height();
-var screenWidth=$(window).width();
-debug_log("screenWidth: "+screenWidth+" screenHeight "+screenHeight);
+var bsputils_env=new Object;
 
-var bsbrowser=isBrightSign();
+function bsputils_init(debug_log)
+{
+    // initialize the BSP Utily Module
+
+    // default to no debug log
+    debug_log = typeof debug_log !== 'undefined' ? debug_log : false;
+    bsp_utils_enable_debug_logging=debug_log;
+
+    var h=$(window).height();
+    var w=$(window).width();
+    var bsp=isBrightSign();
+
+    e=new bspenv(bsp,h,w);
+    return e;
+}
 
 
-window.onload = function() {
-    getID(printObj);
-    getUserVars(printObj);
-    getUDPEvents(printObj);
-};
+function bspenv(bsp,height,width)
+{
+    // constructor for the bsp object
+    this.isbsp=bsp;
+    this.height=height;
+    this.width=width;
+}
+
+function isBrightSign()
+{
+    var ua = navigator.userAgent;
+    var ret=false;
+
+    if(ua.indexOf("BrightSign") !=-1) {
+        debug_log("isBrightSign: TRUE");
+        return true;
+    } else {
+        debug_log("isBrightSign: FALSE");
+        return false;
+    }
+}
 
 
 function bspID(unitName,unitNamingMethod,unitDescription,serialNumber,functionality)
@@ -133,24 +161,11 @@ function printObj(obj)
 }
 
 
-function isBrightSign()
-{
-    var ua = navigator.userAgent;
-    var ret=false;
-
-    if(ua.indexOf("BrightSign") !=-1) {
-        debug_log("isBrightSign: TRUE");
-        return true;
-    } else {
-        debug_log("isBrightSign: FALSE");
-        return false;
-    }
-}
 
 
 function debug_log(logstr)
 {
-    if (enable_debug_logging=true) {
+    if (bsp_utils_enable_debug_logging=true) {
         console.log(logstr);
     }
 }
