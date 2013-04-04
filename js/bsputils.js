@@ -29,30 +29,6 @@ function bspenv(bsp,height,width)
     this.width=width;
 }
 
-function isBrightSign()
-{
-    var ua = navigator.userAgent;
-    var ret=false;
-
-    if(ua.indexOf("BrightSign") !=-1) {
-        debug_log("isBrightSign: TRUE");
-        return true;
-    } else {
-        debug_log("isBrightSign: FALSE");
-        return false;
-    }
-}
-
-
-function bspID(unitName,unitNamingMethod,unitDescription,serialNumber,functionality)
-{
-    this.unitName=unitName;
-    this.unitNamingMethod=unitNamingMethod;
-    this.unitDescription=unitDescription;
-    this.serialNumber=serialNumber;
-    this.functionality=functionality;
-}
-
 
 function getID(callback)
 {
@@ -75,11 +51,16 @@ function getID(callback)
 }
 
 
-function userVar(key,value)
+function bspID(unitName,unitNamingMethod,unitDescription,serialNumber,functionality)
 {
-    this.key=key;
-    this.value=value;
+    this.unitName=unitName;
+    this.unitNamingMethod=unitNamingMethod;
+    this.unitDescription=unitDescription;
+    this.serialNumber=serialNumber;
+    this.functionality=functionality;
 }
+
+
 
 function getUserVars(callback)
 {
@@ -106,19 +87,10 @@ function getUserVars(callback)
     }
 }
 
-
-function bspUDPEventList(sendPort,recvPort,evList)
+function userVar(key,value)
 {
-    this.sendPort=sendPort;
-    this.recvPort=recvPort;
-    this.events=evList;
-}
-
-
-function udpevent(label,action)
-{
-    this.label=label;
-    this.action=action;
+    this.key=key;
+    this.value=value;
 }
 
 
@@ -151,6 +123,36 @@ function getUDPEvents(callback)
             callback(b);
         });
 
+    }
+}
+
+
+function bspUDPEventList(sendPort,recvPort,evList)
+{
+    this.sendPort=sendPort;
+    this.recvPort=recvPort;
+    this.events=evList;
+}
+
+
+function udpevent(label,action)
+{
+    this.label=label;
+    this.action=action;
+}
+
+
+function isBrightSign()
+{
+    var ua = navigator.userAgent;
+    var ret=false;
+
+    if(ua.indexOf("BrightSign") !=-1) {
+        debug_log("isBrightSign: TRUE");
+        return true;
+    } else {
+        debug_log("isBrightSign: FALSE");
+        return false;
     }
 }
 
