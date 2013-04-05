@@ -6,6 +6,12 @@
 <style type="text/css">
 </style>
 <script>
+
+var Playlist;
+var localPlayerIP="http://192.168.70.100:8080";
+var bsnMRSSurl="http://storage.dish.brightsignnetwork.com/Content/Dish/DynamicPlaylists/DishDemoSidebars.xml";
+
+
 window.onload = function() {
 
 	var isBSP=isBrightSign();
@@ -13,7 +19,7 @@ window.onload = function() {
 	if(isBSP) {
 		bsp=bsputils_init(isBSP,true);
 	} else {
-		bsp=bsputils_init(isBSP,true,"http://192.168.70.100:8080");
+		bsp=bsputils_init(isBSP,true,localPlayerIP);
 	}
 	printObj(bsp);
 
@@ -21,11 +27,20 @@ window.onload = function() {
     getUserVars(printObj);
     getUDPEvents(printObj);
 
-    var url="http://storage.dish.brightsignnetwork.com/Content/Dish/DynamicPlaylists/DishDemoSidebars.xml";
-    getBSNPlaylist(url,printObj);
+    getBSNPlaylist(bsnMRSSurl,scanPlaylist);
 
 
 };
+
+function scanPlaylist(mrss)
+{
+	for(x=0;x<mrss.items.length;x++)
+	{
+		var link=mrss.items[x].content.url;
+		printObj(link);
+	}
+}
+
 </script>
 <html>
   <head>
