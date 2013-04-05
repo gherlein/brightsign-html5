@@ -8,14 +8,22 @@
 <script>
 window.onload = function() {
 
-	bsp=bsputils_init(true);
+	var isBSP=isBrightSign();
 
-	if(bsp.isbsp=true)
-	{
-	    getID(printObj);
-	    getUserVars(printObj);
-	    getUDPEvents(printObj);
+	if(isBSP) {
+		bsp=bsputils_init(isBSP,true);
+	} else {
+		bsp=bsputils_init(isBSP,true,"http://192.168.70.100:8080");
 	}
+	printObj(bsp);
+
+    getID(printObj);
+    getUserVars(printObj);
+    getUDPEvents(printObj);
+
+    var url="http://storage.dish.brightsignnetwork.com/Content/Dish/DynamicPlaylists/DishDemoSidebars.xml";
+    getBSNPlaylist(url,printObj);
+
 
 };
 </script>

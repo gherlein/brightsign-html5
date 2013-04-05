@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>DishDemoAuto</title>
+    <link>https://brightsignnetwork.com/</link>
+    <description>DishDemoAuto</description>
+    <generator>BrightSign Network Server Generator 2.0</generator>
+    <item>
+      <title>pennzoil.png</title>
+      <pubDate>2013-03-26T16:10:36.377Z</pubDate>
+      <link>http://storage.dish.brightsignnetwork.com/Content/Dish/Images/pennzoil.png</link>
+      <description>pennzoil.png</description>
+      <guid>8F6F9888DA64248F80B8F4A00B5E75E69044CAEE</guid>
+      <media:content url="http://storage.dish.brightsignnetwork.com/Content/Dish/Images/pennzoil.png" fileSize="435282" type="image/png" medium="image" duration="15" />
+      <media:thumbnail url="http://storage.dish.brightsignnetwork.com/Content/Dish/Thumbs/100x100/pennzoilThumb.42x100.jpg" />
+    </item>
+    <item>
+      <title>tireadvert.png</title>
+      <pubDate>2013-03-26T16:11:00.417Z</pubDate>
+      <link>http://storage.dish.brightsignnetwork.com/Content/Dish/Images/tireadvert.png</link>
+      <description>tireadvert.png</description>
+      <guid>1FA85B889ACEC38EED5DD5E7D4886F90E6018B15</guid>
+      <media:content url="http://storage.dish.brightsignnetwork.com/Content/Dish/Images/tireadvert.png" fileSize="370275" type="image/png" medium="image" duration="15" />
+      <media:thumbnail url="http://storage.dish.brightsignnetwork.com/Content/Dish/Thumbs/100x100/tireadvertThumb.42x100.jpg" />
+    </item>
+  </channel>
+</rss>
