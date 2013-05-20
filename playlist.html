@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd">
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/bsputils.js"></script>
+<link type="text/css" rel="stylesheet" href="css/bsputils.css"/>
+<style type="text/css">
+</style>
+<script>
+
+var Playlist;
+var localPlayerIP="http://192.168.70.100:8080";
+var bsnMRSSurl="http://storage.dish.brightsignnetwork.com/Content/Dish/DynamicPlaylists/DishDemoSidebars.xml";
+
+
+window.onload = function() {
+
+	var isBSP=isBrightSign();
+
+	if(isBSP) {
+		bsp=bsputils_init(isBSP,true);
+	} else {
+		bsp=bsputils_init(isBSP,true,localPlayerIP);
+	}
+	printObj(bsp);
+
+    getID(printObj);
+    getUserVars(printObj);
+    getUDPEvents(printObj);
+
+    getBSNPlaylist(bsnMRSSurl,scanPlaylist);
+
+
+};
+
+function scanPlaylist(mrss)
+{
+	for(x=0;x<mrss.items.length;x++)
+	{
+		var link=mrss.items[x].content.url;
+		printObj(link);
+	}
+}
+
+</script>
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+  	<canvas id="canvas" width="1920" height="1080"></canvas>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+   $.get(bsp.autoplay,function(data,status,jqXHR)
+   { 
+        un=jqXHR.responseText;
+
+        xmlDoc = $.parseXML( un );
+        $xml = $( xmlDoc );
+
+        var zoneList= new Array();
+
+        $xml.find('zones').each(function(){
+            $(this).children().each(function(){
+                var name =$(this).find("name").text();
+                var x =$(this).find("x").text();
+                var y =$(this).find("hash").text();
+                var width=$(this).find("link").text();
+                var height=$(this).find("link").text();
+                var type=$(this).find("link").text();
+                var id=$(this).find("link").text();
+                var zone= new zoneObj(name,x,y,width,height,type,id);
+                zoneList.push(zoneObj);
+            });
+        });
+        bsp.push(zoneList);
+    });
