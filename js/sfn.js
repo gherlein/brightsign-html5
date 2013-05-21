@@ -69,40 +69,29 @@ function getAutoPlayFile(bsp,callnext)
         un=jqXHR.responseText;
         bsp.autoplayXML=un;
 
-        xmlDoc = $.parseXML( un );
-        $xml = $( xmlDoc );
+        //xmlDoc = $.parseXML( un );
+        //$xml = $( xmlDoc );
+        var obj= $.xml2json(un);
+        //printObj(obj);
+//        printObj(obj.zones.zone);
+//        console.log("there are "+obj.zones.zone.length);
+        for(x=0;x<obj.zones.zone.length;x++)
+        {
+            console.log("******")
+            //printObj(obj.zones.zone[x]);
 
-        var zoneList= new Array();
+            var pl=obj.zones.zone[x].playlist.states;
+            printObj(pl);
+        }
 
-        $xml.find('zones').each(function(){
-            $(this).children(":first").each(function(){
 
-                console.log("{"+$(this).text()+"}");
-
-                var name =$(this).find("name").text();
-                var s="["+name+"]";
-                console.log(s);
-                var x =$(this).find("x").text();
-                var y =$(this).find("hash").text();
-                var width=$(this).find("link").text();
-                var height=$(this).find("link").text();
-                var type=$(this).find("link").text();
-                var id=$(this).find("link").text();
-                var zone= new zoneObj(name,x,y,width,height,type,id);
-                zoneList.push(zoneObj);
-            });
-        });
-        bsp.zones=zoneList;
-//        printObj(bsp.autoplayXML);
-        printObj(bsp.zones);
     });
 
 }
 
 
-function zoneObj(name,x,y,width,height,type,id)
+function zoneObj(x,y,width,height,type,id)
 {
-    this.name=name;
     this.x=x;
     this.y=y;
     this.width=width;
@@ -110,6 +99,46 @@ function zoneObj(name,x,y,width,height,type,id)
     this.type=type;
     this.id=id;
 }
+
+
+// Changes XML to JSON
+function xmlToJson(xml) {
+    
+    // Create the return object
+    var obj = {};
+
+    if (xml.nodeType == 1) { // element
+        // do attributes
+        if (xml.attributes.length > 0) {
+        obj["@attributes"] = {};
+            for (var j = 0; j < xml.attributes.length; j++) {
+                var attribute = xml.attributes.item(j);
+                obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
+            }
+        }
+    } else if (xml.nodeType == 3) { // text
+        obj = xml.nodeValue;
+    }
+
+    // do children
+    if (xml.hasChildNodes()) {
+        for(var i = 0; i < xml.childNodes.length; i++) {
+            var item = xml.childNodes.item(i);
+            var nodeName = item.nodeName;
+            if (typeof(obj[nodeName]) == "undefined") {
+                obj[nodeName] = xmlToJson(item);
+            } else {
+                if (typeof(obj[nodeName].length) == "undefined") {
+                    var old = obj[nodeName];
+                    obj[nodeName] = [];
+                    obj[nodeName].push(old);
+                }
+                obj[nodeName].push(xmlToJson(item));
+            }
+        }
+    }
+    return obj;
+};
 
 
 

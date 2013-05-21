@@ -1,24 +1,22 @@
-   $.get(bsp.autoplay,function(data,status,jqXHR)
-   { 
-        un=jqXHR.responseText;
+    var zoneList= new Array();
 
-        xmlDoc = $.parseXML( un );
-        $xml = $( xmlDoc );
+        $xml.find('zones').children('zone').each(function(){
 
-        var zoneList= new Array();
-
-        $xml.find('zones').each(function(){
-            $(this).children().each(function(){
-                var name =$(this).find("name").text();
+            $(this).each(function(){
+                console.log($(this).text());
+                var name =$(this).children(":first").find("name").text();
+               var s="["+name+"]";
+               //console.log(s);
                 var x =$(this).find("x").text();
-                var y =$(this).find("hash").text();
-                var width=$(this).find("link").text();
-                var height=$(this).find("link").text();
-                var type=$(this).find("link").text();
-                var id=$(this).find("link").text();
-                var zone= new zoneObj(name,x,y,width,height,type,id);
+                var y =$(this).find("y").text();
+                var width=$(this).find("width").text();
+                var height=$(this).find("height").text();
+                var type=$(this).find("type").text();
+                var id=$(this).find("id").text();
+                var zone= new zoneObj(x,y,width,height,type,id);
                 zoneList.push(zoneObj);
             });
         });
-        bsp.push(zoneList);
-    });
+        bsp.zones=zoneList;
+//        printObj(bsp.autoplayXML);
+        printObj(bsp.zones);
