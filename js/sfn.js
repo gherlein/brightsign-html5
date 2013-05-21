@@ -75,7 +75,7 @@ function getAutoPlayFile(bsp,callnext)
         var zoneList= new Array();
 
         $xml.find('zones').each(function(){
-            $(this).children().each(function(){
+            $(this).children(":first").each(function(){
 
                 console.log("{"+$(this).text()+"}");
 
