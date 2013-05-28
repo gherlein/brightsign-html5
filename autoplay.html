@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd">
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/jquery.xml2json.js"></script>
+<script src="js/sfn.js"></script>
+<script src="js/bsp.js"></script>
+<link type="text/css" rel="stylesheet" href="css/bsputils.css"/>
+<style type="text/css">
+</style>
+<script>
+
+
+window.onload = function() {
+
+  var bsp={};
+  bsp.syncfile="current-sync.xml";
+  getAutoPlay(bsp,printBsp);
+//  setTimeout(function(){printObj(bsp);},1000);
+
+};
+
+
+function printBsp(bsp)
+{
+   printObj(bsp);
+
+};
+
+</script>
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+  	<canvas id="canvas" width="1920" height="1080"></canvas>
+  </body>
+</html>

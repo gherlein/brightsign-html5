@@ -31,7 +31,7 @@ function readCurrentSyncFileList(sUrl,callnext,bsp)
         });
         bsp.syncFileList=syncFileList;
 
-        //printObj(bsp.syncFileList);
+        printObj(bsp.syncFileList);
         callnext(bsp);
     });
 }
@@ -54,6 +54,7 @@ function findAutoplayFile(bsp)
         if(nRet>=0)
         {
             bsp.autoplayURL=bsp.syncFileList[x].link;
+            printObj(bsp.autoplayURL);
         }
     }
 }
@@ -78,7 +79,7 @@ function getAutoPlayFile(bsp,callnext)
         for(x=0;x<obj.zones.zone.length;x++)
         {
             console.log("******")
-            //printObj(obj.zones.zone[x]);
+            printObj(obj.zones.zone[x]);
 
             var pl=obj.zones.zone[x].playlist.states;
             printObj(pl);

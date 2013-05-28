@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd">
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/bsp.js"></script>
+<script>
+
+var Playlist;
+var bsnMRSSurl="http://storage.dish.brightsignnetwork.com/Content/Dish/DynamicPlaylists/DishDemoSidebars.xml";
+
+window.onload = function() {
+    getBSNPlaylist(bsnMRSSurl,scanPlaylist);
+};
+
+function scanPlaylist(mrss)
+{
+  for(x=0;x<mrss.items.length;x++)
+  {
+    var link=mrss.items[x].content.url;
+    printObj(link);
+  }
+}
+</script>
+<link type="text/css" rel="stylesheet" href="css/bsputils.css"/>
+
+<style type="text/css">
+</style>
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+  	<canvas id="canvas" width="1920" height="1080"></canvas>
+  </body>
+</html>
